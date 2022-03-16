@@ -1,0 +1,139 @@
+* {
+    font-family: 'League Spartan', sans-serif;
+    box-sizing: border-box;
+    
+}
+
+.container {
+    display: flexbox; 
+    background-image: url("../images/background-img.jpeg");
+    /* border: 2px black solid;  */
+    padding: 3px; 
+    background-color: rgb(247, 233, 124);
+    margin: 2%;
+}
+
+#high-scores {
+    float: left;
+    border: 2px black solid; 
+    padding: 5px;
+    background-color: rgb(187, 37, 37);
+    border-radius: 5px;
+    box-shadow: 5px;
+
+}
+
+#timer {
+    float: right;
+    margin-top: 1px;
+    line-height: 4.1vh;
+    border: 2px black solid; 
+    padding: 5px;
+    background-color: rgb(187, 37, 37);
+    border-radius: 5px;
+    box-shadow: 5px;
+
+}
+
+.main-section {
+    text-align: center; 
+    border: 2px black solid; 
+    margin: 18% 10% 10% 10%;
+    margin-top: 18%; 
+    line-height: 50px;
+    background-color: azure;   
+}
+
+#welcome {
+    font-size: 300%;
+}
+
+.directions {
+    line-height: 20px;
+    font-size: medium;
+}
+
+.btn {
+    line-height: 30px;
+    font-size: x-large;
+    background-color: rgb(187, 37, 37);
+    border-radius: 5px;
+    box-shadow: 5px;
+}
+
+.question-container {
+    text-align: center; 
+    border: 2px black solid; 
+    margin: 18% 10% 10% 10%;
+    height: 60vh;
+    line-height: 50px;
+    background-color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    position: relative;
+    visibility: hidden;
+
+}
+
+.question-answers {
+    /* border: black 2px solid; */
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 90%;
+    visibility: hidden;
+}
+
+.btn-answer-options {
+    background-color: rgb(187, 37, 37);
+    display: block;
+    padding: 3%;
+    border-radius: 50%;
+    visibility: hidden;
+}
+
+.save-info {
+    text-align: center; 
+    border: 2px black solid; 
+    margin: 18% 10% 10% 10%;
+    height: 60vh;
+    line-height: 50px;
+    background-color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    position: relative;
+    visibility: hidden;
+}
+
+#final-score {
+    border: 2px black solid;
+    text-align: center;
+    font-size: 23px; 
+    background-color: rgba(189, 11, 11, 0.329);
+    visibility: hidden;
+}
+
+.input {
+    font-size: large;
+    visibility: hidden;
+}
+
+.high-scores {
+    text-align: center; 
+    border: 2px black solid; 
+    margin: 18% 10% 10% 10%;
+    height: 60vh;
+    line-height: 50px;
+    background-color: azure;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    position: relative;
+    visibility: hidden;
+}
+

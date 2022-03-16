@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@300&display=swap" rel="stylesheet">    
+
+    <!-- <link rel="stylesheet" href="./assets/css/reset.css"> -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>History Quiz with JS</title>
+</head>
+
+<body class="container">    
+    <header class="nav">
+        <div>
+            <button class="btn nav-titles" id="high-scores">Your High Scores<a href="./high-scores.html"></a></button>
+        <!-- </div> -->
+            <h2 class="nav-titles" id="time-left" style="position: relative; position: absolute; right: 5%; top: 2px; background-color: red; padding: 5px">Timer: 75 sec</h2>
+        </div>
+        
+    </header>
+
+    <!-- main container for all the quiz UIs -->
+    <main>
+        <!-- Welcome  -->
+        <div class="main-section"> 
+            <h1 id="welcome">Welcome!</h1> 
+            <h2>Do you want to test your knowledge of 20th C. "Bad Guys" in History?</h2>
+                <p class="directions">There are 5 questions.</p>
+                <p class="directions">You have 75 seconds to finish. Good Luck!</p>
+            <button class="btn" id="start-btn">Start the Game</button>
+        </div>
+
+        <!-- Questions Container -->
+        <div class="question-container">
+            <div class="question-answers">
+                <button class="btn-answer-options" id="answer1"></button>
+                <button class="btn-answer-options" id="answer2"></button>
+                <button class="btn-answer-options" id="answer3"></button>
+                <button class="btn-answer-options" id="answer4"></button>
+            </div>
+        </div>
+
+        <!-- Save Results-->
+        <div class="save-info">
+            <h2 class="saved">Save Your Results</h2>
+            <div id="final-score">Your score is </div>
+            <form id="results-form">
+                <input class="input" type="text" name="initials" placeholder="type in your initials">
+                <button class="btn" id="submit-btn"  type="submit">Save</button>
+            </form>
+        <div>
+
+        <!-- High Scores Container -->
+        <div class="high-scores">
+            <div class="display-scores"></div>
+            <h2>High Scores</h2>
+            <button class="btn" id="play-again">Play Again</button>
+            <button class="btn" id="clear">Quit Game</button>
+        </div>
+    </main>
+
+    <script src="./assets/script.js"></script>
+</body>
+</html>
