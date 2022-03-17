@@ -31,17 +31,18 @@
             <h1 id="welcome">Welcome!</h1> 
             <h2>Do you want to test your knowledge of 20th C. "Bad Guys" in History?</h2>
                 <p class="directions">There are 5 questions.</p>
-                <p class="directions">You have 75 seconds to finish. Good Luck!</p>
+                <p class="directions">You have 75 seconds to finish. Incorrect answers result in a 10 second deduction. Good Luck!</p>
             <button class="btn" id="start-btn">Start the Game</button>
         </div>
 
         <!-- Questions Container -->
         <div class="question-container">
+            <h2 id="question-text"></h2>
             <div class="question-answers">
-                <button class="btn-answer-options" id="answer1"></button>
+                <!-- <button class="btn-answer-options" id="answer1"></button>
                 <button class="btn-answer-options" id="answer2"></button>
                 <button class="btn-answer-options" id="answer3"></button>
-                <button class="btn-answer-options" id="answer4"></button>
+                <button class="btn-answer-options" id="answer4"></button> -->
             </div>
         </div>
 
@@ -51,7 +52,7 @@
             <div id="final-score">Your score is </div>
             <form id="results-form">
                 <input class="input" type="text" name="initials" placeholder="type in your initials">
-                <button class="btn" id="submit-btn"  type="submit">Save</button>
+                <button class="btn" id="submit-btn" onclick = "saveScores()" type="submit">Save</button>
             </form>
         <div>
 

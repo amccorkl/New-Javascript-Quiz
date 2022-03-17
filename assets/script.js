@@ -12,9 +12,11 @@ var answerChoice2 = document.querySelector("#answer2");
 var answerChoice3 = document.querySelector("#answer3");
 var answerChoice4 = document.querySelector("#answer4");
 
-// Save Container
+// Save Container renders info to the High Scores UI
+var saveContainer = document.querySelector(".save-info")
 var finalScore = document.querySelector("#final-score");
-// var initialsForm = document.querySelector("")
+var inputForm = document.querySelector("#results-form");
+// var initialsForm = document.querySelector("");
 var saveBtn = document.querySelector("#submit-btn");
 
 
@@ -65,45 +67,105 @@ function init() {
 
 //render high scores
 function renderHighScores () {
-    // save initials with score here
+    // save initials with score here to highScoresArr
+    highScoresArr.sort(function (a, b) {
+        return b.score - a.score;
 
+    })
+    //do something here still???
+    highScoresArr.forEach(function (highScores) {
+        console.log("high scores..." + highScores.score);
+    })
 
 }
 
 //save high scores
 function saveScore() {
+    questionContainer.style.display = "none";
+    questionAns.style.display = "none";
+    saveContainer.style.display = "block";
+    finalScore.style.display = "block";
+    inputForm.style.display = "block";
+
+
+    // !!!make sure to do my own connection to input (instead of "mon") and score here!!!
+    var scoreObj = {initialsForm: "mon", score: 400}
+    highScoresArr.push(scoreObj);
+    localStorage.setItem("scores", JSON.stringify(highScoresArr));
+    console.log();
     renderHighScores();
 }
 
-   
-
-
-//when startbtn clicked, the questions page loads that was hidden
+//when startbtn clicked, the questions card loads that was hidden
 function startQuiz (){
     mainSection.style.display = "none";
     startBtn.style.display = "none";
-    questionContainer.style.display = "visible";
-    questionAns.style.display = "visible";
+    questionContainer.style.display = "block";
+    questionAns.style.display = "block";
     showQuestions();
 }
 
-//load a question and its answers, also start the timer 
-function showQuestions(index) {
+//loads a question and its answers, also start the timer 
+function showQuestions() {
     timerCount = 75;
     startTimer();
-    // create the questions options below
+    // selects the questions from the array and deducts 10 sec from timer for incorrect answer
+    var quesEl = document.getElementById("question-text");
+    questionAns.innerHTML = "";
+    
+    var quesText = quesArray[index].question;
+    quesEl.textContent = quesText;
 
+    
+    quesArray[index].answers.forEach(function (answer) {
+        var button = document.createElement("button");
+        button.textContent = answer;
+        button.setAttribute("value", answer);
+        button.onclick = evaluateAnswer; 
+        questionAns.appendChild(button);
 
+    })
 }
 
-// called it above when start button clicked
+function evaluateAnswer () {
+    console.log(this.value);
+
+    if (this.value !== quesArray[index].correctAnswer) {
+        console.log("wrong");
+        //time --10 sec
+    } else {
+        console.log("correct");
+        index++;
+
+        //score variable 
+    } 
+    index++;
+
+    
+
+    if (index === quesArray.length) {
+        console.log("end game"); //need to do this
+        saveScore();
+        clearInterval(timer); //not stoppins?????
+    } else {
+        showQuestions();
+    }
+    
+}
+
+// called timer function above when start button clicked
 function startTimer() {
     timer = setInterval(function() {
         timerCount--;
         timeEl.textContent = timerCount;
         
+        // if (timerCount >= 0 && question === null) {
+        //     clearInterval();
+        // }
 
+        // clear timer for when game replayed
         if (timerCount === 0) {
+            //game over text here???
             clearInterval(timer);
         }
     }, 1000)
@@ -131,7 +193,7 @@ clearBtn.addEventListener("click", function () {
     index = 0;
 })
 
-//play again sends user back to the startQuiz function that shows questions and starts the timer
+//play again sends user back to the startQuiz function that shows questions and restarts the timer
 playAgainBtn.addEventListener("click", function() {
     startQuiz()
 })
