@@ -14,66 +14,25 @@
     <title>History Quiz with JS</title>
 </head>
 
-<body class="container">    
+<body class="container" id="main-container">
     <header class="nav">
-        <div>
-            <button class="btn nav-titles" id="high-scores">View High Scores
-                <!-- <a href="./high-scores.html"></a> -->
-            </button>
-        <!-- </div> -->
-            <h2 class="nav-titles" id="time-left">Timer: 75 sec</h2>
-        </div>
-        
+        <a id="score" href="./index-highscores.html">High Scores</a>
+        <span id="count-down"></span>
     </header>
+    
+    <main class="main-section">
+        <section id="quiz-start">
+            <h1 id="welcome">Welcome!</h1>
+            <p class="intro-info" id="hook">Do you want to test your knowledge of 20th C. "bad guys" in History?</p>
+            <p class="intro-info" id="directions">There are 5 questions. <br><br> Your have 75 seconds to finish. Incorrect answers result in a 10 second penalty. <br><br>  Good Luck! </p>
+        
+            <button class="btn" id="timer-start">Start</button>
+        </section>
 
-    <!-- main container for all the quiz UIs -->
-    <main>
-        <!-- Welcome  -->
-        <div class="main-section"> 
-            <h1 id="welcome">Welcome!</h1> 
-            <h2>Do you want to test your knowledge of 20th C. "Bad Guys" in History?</h2>
-                <p class="directions">There are 5 questions.</p>
-                <p class="directions">You have 75 seconds to finish. Incorrect answers result in a 10 second deduction. Good Luck!</p>
-            <button class="btn" id="start-btn">Start the Game</button>
-        </div>
-
-        <!-- Questions Container -->
-        <div class="question-container">
-            <h2 id="question-text"></h2>
-            <div class="question-answers">
-                <!-- <button class="btn-answer-options" id="answer1"></button>
-                <button class="btn-answer-options" id="answer2"></button>
-                <button class="btn-answer-options" id="answer3"></button>
-                <button class="btn-answer-options" id="answer4"></button> -->
-            </div>
-        </div>
-
-        <div id="game-result">
-            <hr>
-            <p id="result-info"></p>
-        </div>
-
-        <!-- Save Results-->
-        <div class="save-container">
-            <h2 class="saved">Save Your Results</h2>
-            <div id="final-score">Your score is <span id="gameScore"></span></div>
-            <form id="results-form">
-                <label for="initials">Enter Initials: </label>
-                <input id="initials" type="text" name="initials" placeholder="type in your initials">
-                <button class="btn" id="submit-btn" onclick = "saveScores()" type="submit">Save</button>
-            </form>
-        <div>
-
-        <!-- High Scores Container -->
-        <div class="high-scores-container">
-            <div class="display-scores"></div>
-            <h2>High Scores</h2>
-            <ol id="high-score-list"></ol>
-            <button class="btn" id="play-again">Play Again</button>
-            <button class="btn" id="clear">Quit Game</button>
-        </div>
+        <ul id="choices-list"></ul>
+        <div id="start"></div>
     </main>
 
-    <script src="./assets/script.js"></script>
+    <footer class="footer">Not sure what to have yet</footer>
+    <script src="./assets/script copy.js"></script>
 </body>
-</html>
