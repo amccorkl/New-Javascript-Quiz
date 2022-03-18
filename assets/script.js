@@ -13,21 +13,24 @@ var answerChoice3 = document.querySelector("#answer3");
 var answerChoice4 = document.querySelector("#answer4");
 
 // Save Container renders info to the High Scores UI
-var saveContainer = document.querySelector(".save-info")
+var saveContainer = document.querySelector(".save-container")
 var finalScore = document.querySelector("#final-score");
+var gameScore = document.querySelector("#gameScore");
 var inputForm = document.querySelector("#results-form");
-// var initialsForm = document.querySelector("");
+// var initialsLabel = document.querySelector("#initials");
 var saveBtn = document.querySelector("#submit-btn");
 
 
 // High Scores Container
+var highScoresContainer = document.querySelector(".high-scores-container");
+var highScoreList = document.querySelector("#high-score-list");
 var playAgainBtn = document.querySelector("#play-again");
 var clearBtn = document.querySelector("#clear");
 
 
 // Global Variables
 var timerCount;
-var timer;
+var time;
 var index = 0;
 var getQuestion = [];
 var highScoresArr = [];
@@ -79,7 +82,7 @@ function renderHighScores () {
 
 }
 
-//save high scores
+//save high scores and hide all other containers
 function saveScore() {
     questionContainer.style.display = "none";
     questionAns.style.display = "none";
@@ -94,6 +97,15 @@ function saveScore() {
     localStorage.setItem("scores", JSON.stringify(highScoresArr));
     console.log();
     renderHighScores();
+}
+
+//show results after each game, not cummulative
+var gameResult = document.querySelector("#game-result");
+var resultInfo = document.querySelector("#result-info");
+
+//hide results div
+function hideResults() {
+    gameResult.style.display = "none";
 }
 
 //when startbtn clicked, the questions card loads that was hidden
@@ -127,12 +139,14 @@ function showQuestions() {
     })
 }
 
+//compares the user answer against the correct answer
 function evaluateAnswer () {
     console.log(this.value);
 
     if (this.value !== quesArray[index].correctAnswer) {
         console.log("wrong");
-        //time --10 sec
+        // time - 10;
+        index--;
     } else {
         console.log("correct");
         index++;
@@ -155,7 +169,7 @@ function evaluateAnswer () {
 
 // called timer function above when start button clicked
 function startTimer() {
-    timer = setInterval(function() {
+    time = setInterval(function() {
         timerCount--;
         timeEl.textContent = timerCount;
         
@@ -164,15 +178,16 @@ function startTimer() {
         // }
 
         // clear timer for when game replayed
-        if (timerCount === 0) {
+        if (timerCount < 0) {
+            endQuiz();
             //game over text here???
-            clearInterval(timer);
+            clearInterval(time);
         }
     }, 1000)
 }
 
 // load the welcome page and the highscores
-init()
+init();
 
 // Event Listeners
 //start game, moves the UI to the questions and starts the timer
@@ -195,5 +210,5 @@ clearBtn.addEventListener("click", function () {
 
 //play again sends user back to the startQuiz function that shows questions and restarts the timer
 playAgainBtn.addEventListener("click", function() {
-    startQuiz()
+    startQuiz();
 })
