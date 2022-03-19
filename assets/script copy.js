@@ -3,7 +3,7 @@ var countdown = document.querySelector("#count-down");
 var startBtn = document.querySelector("#timer-start"); 
 var questionsGroup = document.querySelector("#questions-group")
 var mainContainer = document.querySelector("#main-container");
-var startQuizCard = document.querySelector("#quiz-start");
+var startQuiz = document.querySelector("#quiz-start");
 
 //timers
 var timeLeft = 75;
@@ -40,22 +40,23 @@ var quesArray = [
 
 
 startBtn.addEventListener("click", function() {
-    startQuizCard.setAttribute("style", "display: none;")
+    startQuiz.setAttribute("style", "display: none;")
 
     if (endQuiz === 0) {
         endQuiz = setInterval(function() {
             timeLeft--;
             countdown.textContent = "Time Left: " + timeLeft;
-        })
-    }
-
+          
+        
     if (timeLeft <= 0) {
         clearInterval(endQuiz);
         allFinished();
         countdown.textContent = "TIME'S UP!";
-    }
-    showQuestions(); //render(quesIndex)
-}, 1000)
+        }
+}, 1000);
+}
+showQuestions(quesIndex);
+}) 
 
 function showQuestions(quesIndex) {
     questionsGroup.innerHTML = "";
@@ -64,7 +65,7 @@ function showQuestions(quesIndex) {
     for (let i = 0; i < quesArray.length; i++) {
         var userQuestion = quesArray[quesIndex].question;
         var userAnswerChoices = quesArray[quesIndex].answers;
-        questionsGroup.textContent = userQuestion;        
+        questionsGroup.textContent = userQuestion;   
     }
 
     //append questions and answer choices
@@ -74,22 +75,38 @@ function showQuestions(quesIndex) {
         questionsGroup.appendChild(qCreate);
         qCreate.appendChild(listItem);
         listItem.addEventListener("click", (evalCorrectAns));
+        console.log("Is this working NewItem " + newItem + "what about the quesIndex" + quesIndex);;
     })
 }
 
 //Evaluate user's clicked answer to correct answer
 function evalCorrectAns(event) {
-    var element = element.target;
+    var element = event.target;
 
     if (element.matches("li")) {
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", createDiv);
-    }
+    
     if (element.textContent == questions[quesIndex].correctAnswer) {
         score++;
         createDiv.textContent = "Correct!";
     } else {
         timeLeft = timeLeft - penaltyTime;
-        createDiv.textContent = "Wrong! The correct answer is: " + questions[quesIndex.correctAnswer];
+        createDiv.textContent = "Wrong! The correct answer is: " + questions[quesIndex].correctAnswer;
     }
+    
+}
+quesIndex++
+
+//move through the questions
+
+    if (quesIndex <= questions.length) {
+        quesIndex++;
+    } else {
+        allFinished();
+        create.textContent = "You Finished! " + " " + "Your score is " + score + "/ " + questions + ".";
+        
+    }
+    showQuestions(quesIndex);
+    questionsGroup.appendChild(createDiv);
 }
