@@ -1,3 +1,4 @@
+
 * {
     font-family: 'League Spartan', sans-serif;
     box-sizing: border-box;
@@ -15,7 +16,7 @@
 
 #score {
     float: left;
-    /* width: 100px; */
+    width: 180px;
     height: 40px;
     border: 2px black solid; 
     padding: 5px;
@@ -24,13 +25,14 @@
     box-shadow: 5px;
     text-align: center;
     color: black;
-    font-size: large;
+    font-size: 20px;
 }
 
 #count-down {
     float: right;
-    width: 100px;
+    width: 180px;
     height: 40px;
+    font-size: 20px;
     margin-top: 1px;
     line-height: 4.1vh;
     border: 2px black solid; 
@@ -46,9 +48,10 @@
     text-align: center; 
     border: 2px black solid; 
     margin: 10%;
-    margin-top: 15%; 
+    margin-top: 11%; 
     line-height: 50px;
     background-color: azure;   
+    position: absolute;
 }
 
 #welcome {
@@ -66,77 +69,108 @@
 } */
 
 .btn {
-    line-height: 30px;
-    font-size: x-large;
+    line-height: 40px;
+    width: 180px;
+    font-size: 30px;
     background-color: rgb(187, 37, 37);
     border-radius: 5px;
     box-shadow: 5px;
+    cursor: pointer;
+    display: inline-block;
 }
 
-/* .question-container {
-    text-align: center; 
-    border: 2px black solid; 
-    margin: 18% 10% 10% 10%;
-    height: 60vh;
-    line-height: 50px;
-    background-color: azure;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    display: none; */
 
-/* } */
 
-.question-answers {
-    border: black 2px solid;
-    position: absolute;
-    top: 20%;
-    left: 5%;
+/* not sure yet */
+textarea {
     width: 90%;
-    /* display: none; */
+    margin: 20px;
 }
 
-.btn-answer-options {
-    background-color: rgb(187, 37, 37);
-    display: block;
-    padding: 3%;
-    border-radius: 50%;
-    /* display: none; */
+label { 
+    margin-right: 10px;
 }
 
+input {
+    margin-bottom: 20px;
+    width: 50%;
+    border: 1px solid black;
+}
 
+h1 {text-align: center;
+    padding-top: 5%;
+    font-size: 40px;
+}
 
-#final-score {
-    border: 2px black solid;
+dl {
+    border-bottom: 1px black solid;
     text-align: center;
-    font-size: 23px; 
-    background-color: rgba(189, 11, 11, 0.329);
-    /* display: none; */
+    font-size: 15px;
+    width: 20%;
+    margin-left: 35%;
 }
 
-.input {
-    font-size: large;
-    /* display: none; */
+li {
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 5px 15px;  
+    width: 80%;
+    border: 1px solid black;
+    list-style: none;
 }
 
-/* .high-scores {
-    text-align: center; 
-    border: 2px black solid; 
-    margin: 18% 10% 10% 10%;
-    height: 60vh;
-    line-height: 50px;
-    background-color: azure;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    display: block;
+li:hover {
+    cursor: pointer;
+    background-color: rgb(16, 68, 148);
+    color: white;
+}
+
+#createDiv {
+    margin-top: 20px;
+    width: 400px;
+    height: auto;
+    border-bottom: 1px solid black;
+}
+
+#submit {
+    margin: 3% 0 10% 30%;
+}
+
+#go-back {
     position: relative;
-    display: none;
-} */
+    margin: 15px;
+    width: auto;
+    text-align: center;
+
+}
+
+#clear {
+    position: relative;
+    margin: 15px;
+    text-align: center;
+}
+
+
+#questions-group {
+    font-size: 26px;
+    margin: 20px;
+    text-align: center; 
+    width: 80%;
+    margin: 10%;
+    margin-top: 15%; 
+    line-height: 50px;
+    background-color: azure;   
+}
+
 
 /* footer */
+.footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    right: 40%;
 
+}
 /* @media screen {
     shrink text on screen sizes
 } */

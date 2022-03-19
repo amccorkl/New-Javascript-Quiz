@@ -1,9 +1,10 @@
 // Global Variables
 var countdown = document.querySelector("#count-down");
 var startBtn = document.querySelector("#timer-start"); 
-var questionsGroup = document.querySelector("#questions-group")
+var questionsDiv = document.querySelector("#questions-container")
 var mainContainer = document.querySelector("#main-container");
 var startQuiz = document.querySelector("#quiz-start");
+var quesDiv = document.querySelector("#start");
 
 //timers
 var timeLeft = 75;
@@ -40,6 +41,7 @@ var quesArray = [
 
 
 startBtn.addEventListener("click", function() {
+    //hides the welcome page when startbtn clicked
     startQuiz.setAttribute("style", "display: none;")
 
     if (endQuiz === 0) {
@@ -59,20 +61,20 @@ showQuestions(quesIndex);
 }) 
 
 function showQuestions(quesIndex) {
-    questionsGroup.innerHTML = "";
+    questionsDiv.innerHTML = "";
     qCreate.innerHTML = "";
 
     for (let i = 0; i < quesArray.length; i++) {
         var userQuestion = quesArray[quesIndex].question;
         var userAnswerChoices = quesArray[quesIndex].answers;
-        questionsGroup.textContent = userQuestion;   
+        questionsDiv.textContent = userQuestion;   
     }
 
     //append questions and answer choices
     userAnswerChoices.forEach(function (newItem) {
         var listItem = document.createElement("li");
         listItem.textContent = newItem;
-        questionsGroup.appendChild(qCreate);
+        questionsDiv.appendChild(qCreate);
         qCreate.appendChild(listItem);
         listItem.addEventListener("click", (evalCorrectAns));
         console.log("Is this working NewItem " + newItem + "what about the quesIndex" + quesIndex);;
@@ -93,20 +95,49 @@ function evalCorrectAns(event) {
     } else {
         timeLeft = timeLeft - penaltyTime;
         createDiv.textContent = "Wrong! The correct answer is: " + questions[quesIndex].correctAnswer;
-    }
-    
+    } 
 }
 quesIndex++
 
 //move through the questions
 
-    if (quesIndex <= questions.length) {
-        quesIndex++;
-    } else {
+    if (quesIndex >= questions.length) {
         allFinished();
         create.textContent = "You Finished! " + " " + "Your score is " + score + "/ " + questions + ".";
         
-    }
+    } else
     showQuestions(quesIndex);
-    questionsGroup.appendChild(createDiv);
+    questionsDiv.appendChild(createDiv);
 }
+
+//clears time, gives saluation and appends it, gives user their score, has user input initials to save socre
+function allFinished() {
+    clearInterval(endQuiz);
+    quesDiv.innerHTML = "";
+    countdown.innerHTML = "";
+
+    var createH1 = document.createElement("h1");
+    createH1.setAttribute("id", createH1);
+    createH1.textContent = "Thanks for playing!";
+    questionsDiv.appendChild(createH1);
+
+    var createP = document.createElement("p");
+    createP.setAttribute("id", createP);
+    quesDiv.appendChild(createP);
+
+    if (timeLeft === 0) {
+        var timeRemaining = timeLeft;
+        var createScorePtag = document.createElement("p");
+        createScorePtag.textContent = "Your score is: " + timeRemaining;
+        questionsDiv.appendChild(createScorePtag);
+    }
+
+    var createInput = document.createElement("input");
+    createInput.setAttribute("id", "initals");
+    createInput.setAttribute("type", "text");
+
+}
+
+
+
+
