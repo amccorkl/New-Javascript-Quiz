@@ -110,7 +110,7 @@ quesIndex++
     questionsDiv.appendChild(createDiv);
 }
 
-//clears time, gives saluation and appends it, gives user their score, has user input initials to save socre
+//clears time, gives saluation and appends it, gives user their score, has user input initials to save score
 function allFinished() {
     clearInterval(endQuiz);
     quesDiv.innerHTML = "";
@@ -132,10 +132,46 @@ function allFinished() {
         questionsDiv.appendChild(createScorePtag);
     }
 
-    var createInput = document.createElement("input");
-    createInput.setAttribute("id", "initals");
-    createInput.setAttribute("type", "text");
+    var createInputForm = document.createElement("input");
+    createInputForm.setAttribute("type", "text");
+    createInputForm.setAttribute("id", "initals");
+    createInputForm.setAttribute("id", "points");
+    createInputForm.setAttribute("id", "ranking");
+    createInputForm.textContent = "";
+    quesDiv.appendChild(createInputForm);
 
+    createSubmitBtn = document.createElement("button");
+    createSubmitBtn.setAttribute("type", "submit");
+    createSubmitBtn.setAttribute("id", "submit");
+    createSubmitBtn.textContent = "Submit";
+    quesDiv.appendChild(createSubmitBtn);
+
+    createSubmitBtn.addEventListener("click", function() {
+        var initials = createInputForm.value;
+
+        if (initials === null) {
+            initials.textContent = "You didn't enter your initials";
+        } else {
+            var finalScore = {
+                initials: initials,
+                score: timeRemaining
+            }
+            console.log(finalScore);
+            var allScores = localStorage.getItem("allScores");
+
+            if (allScores === null) {
+                allScores = [];
+            } else {
+                allScores = JSON.parse(allScores);
+            }
+            allScores.push(finalScore);
+            var newScore = JSON.stringify(allScores);
+            localStorage.setItem("allScores", newScore);
+
+            //connects to the High Scores UI
+            window.location.replace("./index-highscores.html");
+        }       
+    })
 }
 
 
