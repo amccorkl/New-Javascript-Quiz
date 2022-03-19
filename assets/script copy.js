@@ -1,10 +1,10 @@
 // Global Variables
 var countdown = document.querySelector("#count-down");
 var startBtn = document.querySelector("#timer-start"); 
-var questionsDiv = document.querySelector("#questions-container")
+var quesDiv = document.querySelector("#questions-container")
 var mainContainer = document.querySelector("#main-container");
 var startQuiz = document.querySelector("#quiz-start");
-var quesDiv = document.querySelector("#start");
+
 
 //timers
 var timeLeft = 75;
@@ -49,34 +49,34 @@ startBtn.addEventListener("click", function() {
             timeLeft--;
             countdown.textContent = "Time Left: " + timeLeft;
           
-        
-    if (timeLeft <= 0) {
+        if (timeLeft <= 0) {
         clearInterval(endQuiz);
         allFinished();
         countdown.textContent = "TIME'S UP!";
         }
 }, 1000);
 }
-showQuestions(quesIndex);
+    showQuestions(quesIndex);
 }) 
 
 function showQuestions(quesIndex) {
-    questionsDiv.innerHTML = "";
+    quesDiv.innerHTML = "";
     qCreate.innerHTML = "";
 
     for (let i = 0; i < quesArray.length; i++) {
         var userQuestion = quesArray[quesIndex].question;
         var userAnswerChoices = quesArray[quesIndex].answers;
-        questionsDiv.textContent = userQuestion;   
+        quesDiv.textContent = userQuestion;   
     }
 
     //append questions and answer choices
     userAnswerChoices.forEach(function (newItem) {
         var listItem = document.createElement("li");
         listItem.textContent = newItem;
-        questionsDiv.appendChild(qCreate);
+        quesDiv.appendChild(qCreate);
         qCreate.appendChild(listItem);
         listItem.addEventListener("click", (evalCorrectAns));
+       
         console.log("Is this working NewItem " + newItem + "what about the quesIndex" + quesIndex);;
     })
 }
@@ -85,29 +85,31 @@ function showQuestions(quesIndex) {
 function evalCorrectAns(event) {
     var element = event.target;
 
-    if (element.matches("li")) {
+    if (element.matches("li")) {        
         var createDiv = document.createElement("div");
-        createDiv.setAttribute("id", createDiv);
-    
-    if (element.textContent == questions[quesIndex].correctAnswer) {
-        score++;
-        createDiv.textContent = "Correct!";
-    } else {
-        timeLeft = timeLeft - penaltyTime;
-        createDiv.textContent = "Wrong! The correct answer is: " + questions[quesIndex].correctAnswer;
-    } 
-}
-quesIndex++
+        createDiv.setAttribute("id", "createDiv");
+        //having bug issue here in line 92
+        if (element.textContent == quesArray[quesIndex].correctAnswer) {
+            score++;
+            createDiv.textContent = "Correct!";
+            console.log("correct");
+        } else {
+            timeLeft = timeLeft - penaltyTime;
+            createDiv.textContent = "Wrong! The correct answer is: " + quesArray[quesIndex].correctAnswer;
+            console.log("wrong");
+        } 
+        quesIndex++
+    }
 
-//move through the questions
-
-    if (quesIndex >= questions.length) {
+    //move through the questions
+    if (quesIndex >= quesArray.length) {
         allFinished();
-        create.textContent = "You Finished! " + " " + "Your score is " + score + "/ " + questions + ".";
+        createDiv.textContent = "You Finished! " + " " + "Your score is " + score + "/ " + quesArray + ".";
         
-    } else
+    } else {
     showQuestions(quesIndex);
-    questionsDiv.appendChild(createDiv);
+    quesDiv.appendChild(createDiv);
+    }
 }
 
 //clears time, gives saluation and appends it, gives user their score, has user input initials to save score
@@ -119,7 +121,7 @@ function allFinished() {
     var createH1 = document.createElement("h1");
     createH1.setAttribute("id", createH1);
     createH1.textContent = "Thanks for playing!";
-    questionsDiv.appendChild(createH1);
+    quesDiv.appendChild(createH1);
 
     var createP = document.createElement("p");
     createP.setAttribute("id", createP);
@@ -129,7 +131,7 @@ function allFinished() {
         var timeRemaining = timeLeft;
         var createScorePtag = document.createElement("p");
         createScorePtag.textContent = "Your score is: " + timeRemaining;
-        questionsDiv.appendChild(createScorePtag);
+        ques.appendChild(createScorePtag);
     }
 
     var createInputForm = document.createElement("input");
