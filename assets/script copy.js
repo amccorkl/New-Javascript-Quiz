@@ -7,7 +7,7 @@ var startQuiz = document.querySelector("#quiz-start");
 
 
 //timers
-var timeLeft = 75;
+var timeLeft = 55;
 var endQuiz = 0;
 var penaltyTime = 10;
 var qCreate = document.createElement("ul");
@@ -127,11 +127,17 @@ function allFinished() {
     createP.setAttribute("id", createP);
     quesDiv.appendChild(createP);
 
-    if (timeLeft === 0) {
+    var createInitialsDir = document.createElement("p");
+    createInitialsDir.setAttribute("id", createInitialsDir)
+    // create a placeholder piece
+    createInitialsDir.textContent = "Enter your initials to save your score."
+    quesDiv.appendChild(createInitialsDir);
+
+    if (timeLeft >= 0) {
         var timeRemaining = timeLeft;
         var createScorePtag = document.createElement("p");
         createScorePtag.textContent = "Your score is: " + timeRemaining;
-        ques.appendChild(createScorePtag);
+        quesDiv.appendChild(createScorePtag);
     }
 
     var createInputForm = document.createElement("input");
@@ -158,17 +164,18 @@ function allFinished() {
                 initials: initials,
                 score: timeRemaining
             }
-            console.log(finalScore);
-            var allScores = localStorage.getItem("allScores");
 
-            if (allScores === null) {
-                allScores = [];
+            console.log(finalScore);
+            var scoreList = localStorage.getItem("scoreList");
+
+            if (scoreList === null) {
+                scoreList = [];
             } else {
-                allScores = JSON.parse(allScores);
+                scoreList = JSON.parse(scoreList);
             }
-            allScores.push(finalScore);
-            var newScore = JSON.stringify(allScores);
-            localStorage.setItem("allScores", newScore);
+            scoreList.push(finalScore);
+            var newScore = JSON.stringify(scoreList);
+            localStorage.setItem("scoreList", newScore);
 
             //connects to the High Scores UI
             window.location.replace("./index-highscores.html");
