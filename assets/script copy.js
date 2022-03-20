@@ -154,6 +154,15 @@ function allFinished() {
     createSubmitBtn.textContent = "Submit";
     quesDiv.appendChild(createSubmitBtn);
 
+    createRtnStartBtn = document.createElement("button");
+    createRtnStartBtn.setAttribute("id", "restart");
+    createRtnStartBtn.textContent = "Restart";
+    quesDiv.appendChild(createRtnStartBtn);
+
+    createRtnStartBtn.addEventListener("click", function() {
+        window.location.replace("./index.html");
+    })
+
     createSubmitBtn.addEventListener("click", function() {
         var initials = createInputForm.value;
 
