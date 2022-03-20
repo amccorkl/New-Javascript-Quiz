@@ -39,7 +39,7 @@ var quesArray = [
     },
 ];
 
-
+// game starts with Start Btn click
 startBtn.addEventListener("click", function() {
     //hides the welcome page when startbtn clicked
     startQuiz.setAttribute("style", "display: none;")
@@ -59,6 +59,7 @@ startBtn.addEventListener("click", function() {
     showQuestions(quesIndex);
 }) 
 
+// have questions div show up on UI
 function showQuestions(quesIndex) {
     quesDiv.innerHTML = "";
     qCreate.innerHTML = "";
@@ -88,7 +89,6 @@ function evalCorrectAns(event) {
     if (element.matches("li")) {        
         var createDiv = document.createElement("div");
         createDiv.setAttribute("id", "createDiv");
-        //having bug issue here in line 92
         if (element.textContent == quesArray[quesIndex].correctAnswer) {
             score++;
             createDiv.textContent = "Correct!";
@@ -117,6 +117,9 @@ function allFinished() {
     clearInterval(endQuiz);
     quesDiv.innerHTML = "";
     countdown.innerHTML = "";
+    window.onload=function(){
+        document.getElementById("score").style.display = "none";
+    }
 
     var createH1 = document.createElement("h1");
     createH1.setAttribute("id", createH1);

@@ -174,7 +174,7 @@ li:hover {
     padding: 2px;
     line-height: 20px;
     text-align: center;
-    width: 12%;
+    width: auto;
     font-size: 20px;
     background-color: rgb(187, 37, 37);
     border-radius: 5px;
@@ -189,7 +189,7 @@ li:hover {
     padding: 2px;
     line-height: 20px;
     text-align: center;
-    width: 12%;
+    width: auto;
     font-size: 20px;
     background-color: rgb(187, 37, 37);
     border-radius: 5px;
@@ -214,8 +214,6 @@ li:hover {
     text-align: center;
 }
 
-
-
 /* footer */
 .footer {
     text-align: center;
@@ -232,11 +230,8 @@ li:hover {
 
 }
 /* @media screen {
-
-
-/* have buttons stack, esp timer with high scores */
-
 /* shrink text h1s, buttons */
+
 @media screen and (max-width: 350px) { 
     .btn {
         font-size: 17px;
