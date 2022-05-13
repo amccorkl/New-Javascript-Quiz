@@ -3,7 +3,6 @@ var reStart = document.querySelector("#go-back");
 var clear = document.querySelector("#clear");
 
 // retrieves and renders scores
-
 var scoreList = localStorage.getItem("scoreList");
     scoreList = JSON.parse(scoreList);
 

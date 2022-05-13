@@ -1,4 +1,3 @@
-
 * {
     font-family: 'League Spartan', sans-serif;
     box-sizing: border-box;    
@@ -8,15 +7,16 @@
 .container {
     display: flexbox; 
     background-image: url("../images/background-img.jpeg");
+    width: 100vw;
+    height: 100vh;
     /* border: 2px black solid;  */
-    padding: 3px; 
+    padding: 15px; 
     /* background-color: rgb(247, 233, 124); */
-    margin: 2%;
 }
 
 #score {
     float: left;
-    width: 180px;
+    /* width: 180px; */
     height: 40px;
     border: 2px black solid; 
     padding: 9px;
@@ -31,7 +31,7 @@
 
 #count-down {
     float: right;
-    width: 40%;
+    /* width: 40%; */
     height: 40px;
     font-size: 127%;
     margin-top: 1px;
@@ -55,11 +55,6 @@
     position: relative;
 }
 
-#welcome {
-    font-size: 285%;
-    padding: 3%;
-}
-
 .intro-info {
     line-height: 118%;
     font-size: x-large;
@@ -69,13 +64,18 @@
 
 .btn {
     line-height: 40px;
-    width: 28%;
+    /* width: 28%; */
     font-size: 158%;
     background-color: rgb(187, 37, 37);
     border-radius: 5px;
     box-shadow: 5px;
     cursor: pointer;
     display: inline-block;
+}
+
+#welcome {
+    font-size: 285%;
+    padding: 3%;
 }
 
 
@@ -238,7 +238,7 @@ li:hover {
         width: auto;
     }
     .main-section {
-        margin-top: 15%;        
+        margin-top: 30%;        
     }
     #score {
         width: 139px;

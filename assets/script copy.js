@@ -1,16 +1,16 @@
 // Global Variables
-var countdown = document.querySelector("#count-down");
+var countdownEl = document.querySelector("#count-down");
 var startBtn = document.querySelector("#timer-start"); 
 var quesDiv = document.querySelector("#questions-container")
 var mainContainer = document.querySelector("#main-container");
-var startQuiz = document.querySelector("#quiz-start");
+var startQuizEl = document.querySelector("#quiz-start");
 
 
 //timers
 var timeLeft = 55;
-var endQuiz = 0;
+var timer = 0;
 var penaltyTime = 10;
-var qCreate = document.createElement("ul");
+// var qCreate = document.createElement("ul");
 
 var score = 0;
 var quesIndex = 0;
@@ -39,30 +39,34 @@ var quesArray = [
     },
 ];
 
+function initGame() {
 // game starts with Start Btn click
-startBtn.addEventListener("click", function() {
     //hides the welcome page when startbtn clicked
-    startQuiz.setAttribute("style", "display: none;")
-
-    if (endQuiz === 0) {
-        endQuiz = setInterval(function() {
-            timeLeft--;
-            countdown.textContent = "Time Left: " + timeLeft;
-          
-        if (timeLeft <= 0) {
-        clearInterval(endQuiz);
-        allFinished();
-        countdown.textContent = "TIME'S UP!";
-        }
-}, 1000);
+    startQuizEl.setAttribute("style", "display: none;");
+    startTimer();
+    renderQuestions(quesIndex);
 }
-    showQuestions(quesIndex);
-}) 
+
+//timer countdown
+function startTimer() {
+    timer = setInterval(function() {
+        timeLeft--;
+        countdownEl.textContent = "Time Left: " + timeLeft;
+        if (timeLeft <= 0) {
+        clearInterval(timer);
+        allFinished();
+        countdownEl.textContent = "TIME'S UP!";
+        }
+    }, 1000);
+}
+    
+
 
 // have questions div show up on UI
-function showQuestions(quesIndex) {
+function renderQuestions(quesIndex) {
     quesDiv.innerHTML = "";
-    qCreate.innerHTML = "";
+    var quesUlDiv = document.createElement("ul");
+    quesUlDiv.innerHTML = "";
 
     for (let i = 0; i < quesArray.length; i++) {
         var userQuestion = quesArray[quesIndex].question;
@@ -74,8 +78,8 @@ function showQuestions(quesIndex) {
     userAnswerChoices.forEach(function (newItem) {
         var listItem = document.createElement("li");
         listItem.textContent = newItem;
-        quesDiv.appendChild(qCreate);
-        qCreate.appendChild(listItem);
+        quesDiv.appendChild(quesUlDiv);
+        quesUlDiv.appendChild(listItem);
         listItem.addEventListener("click", (evalCorrectAns));
        
         console.log("Is this working NewItem " + newItem + "what about the quesIndex" + quesIndex);;
@@ -107,16 +111,16 @@ function evalCorrectAns(event) {
         createDiv.textContent = "You Finished! " + " " + "Your score is " + score + "/ " + quesArray + ".";
         
     } else {
-    showQuestions(quesIndex);
+    renderQuestions(quesIndex);
     quesDiv.appendChild(createDiv);
     }
 }
 
 //clears time, gives saluation and appends it, gives user their score, has user input initials to save score
 function allFinished() {
-    clearInterval(endQuiz);
+    clearInterval(timer);
     quesDiv.innerHTML = "";
-    countdown.innerHTML = "";
+    countdownEl.innerHTML = "";
     window.onload=function(){
         document.getElementById("score").style.display = "none";
     }
@@ -195,6 +199,7 @@ function allFinished() {
     })
 }
 
+startBtn.addEventListener("click", initGame);
 
 
 
