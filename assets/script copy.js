@@ -4,16 +4,14 @@ var startBtn = document.querySelector("#timer-start");
 var quesDiv = document.querySelector("#questions-container")
 var mainContainer = document.querySelector("#main-container");
 var startQuizEl = document.querySelector("#quiz-start");
-
+var score = 0;
+var quesIndex = 0;
 
 //timers
 var timeLeft = 55;
 var timer = 0;
 var penaltyTime = 10;
-// var qCreate = document.createElement("ul");
 
-var score = 0;
-var quesIndex = 0;
 
 //questions
 var quesArray = [
@@ -64,8 +62,9 @@ function startTimer() {
 
 // have questions div show up on UI
 function renderQuestions(quesIndex) {
-    quesDiv.innerHTML = "";
     var quesUlDiv = document.createElement("ul");
+
+    quesDiv.innerHTML = "";
     quesUlDiv.innerHTML = "";
 
     for (let i = 0; i < quesArray.length; i++) {
@@ -86,7 +85,7 @@ function renderQuestions(quesIndex) {
     })
 }
 
-//Evaluate user's clicked answer to correct answer
+//Evaluate user's clicked answer against correct answer
 function evalCorrectAns(event) {
     var element = event.target;
 
@@ -109,6 +108,8 @@ function evalCorrectAns(event) {
     if (quesIndex >= quesArray.length) {
         allFinished();
         createDiv.textContent = "You Finished! " + " " + "Your score is " + score + "/ " + quesArray + ".";
+        countdownEl.style.display = "none";
+
         
     } else {
     renderQuestions(quesIndex);
@@ -116,29 +117,30 @@ function evalCorrectAns(event) {
     }
 }
 
-//clears time, gives saluation and appends it, gives user their score, has user input initials to save score
+//clears time, gives salutation and appends it, gives user their score, has user input initials to save score
 function allFinished() {
     clearInterval(timer);
     quesDiv.innerHTML = "";
     countdownEl.innerHTML = "";
     window.onload=function(){
         document.getElementById("score").style.display = "none";
+        countdownEl.style.display = "none";
     }
 
-    var createH1 = document.createElement("h1");
-    createH1.setAttribute("id", createH1);
-    createH1.textContent = "Thanks for playing!";
-    quesDiv.appendChild(createH1);
+    var createH2 = document.createElement("h2");
+    createH2.setAttribute("id", createH2);
+    createH2.textContent = "Thanks for playing!";
+    quesDiv.appendChild(createH2);
 
     var createP = document.createElement("p");
     createP.setAttribute("id", createP);
     quesDiv.appendChild(createP);
 
-    var createInitialsDir = document.createElement("p");
-    createInitialsDir.setAttribute("id", createInitialsDir)
+    var createInitialsDiv = document.createElement("p");
+    createInitialsDiv.setAttribute("id", createInitialsDiv);
     // create a placeholder piece
-    createInitialsDir.textContent = "Enter your initials to save your score."
-    quesDiv.appendChild(createInitialsDir);
+    createInitialsDiv.textContent = "Enter your initials to save your score.";
+    quesDiv.appendChild(createInitialsDiv);
 
     if (timeLeft >= 0) {
         var timeRemaining = timeLeft;
@@ -149,7 +151,7 @@ function allFinished() {
 
     var createInputForm = document.createElement("input");
     createInputForm.setAttribute("type", "text");
-    createInputForm.setAttribute("id", "initals");
+    createInputForm.setAttribute("id", "initials");
     createInputForm.setAttribute("id", "points");
     createInputForm.setAttribute("id", "ranking");
     createInputForm.textContent = "";
@@ -175,6 +177,7 @@ function allFinished() {
 
         if (initials === null) {
             initials.textContent = "You didn't enter your initials";
+            
         } else {
             var finalScore = {
                 initials: initials,

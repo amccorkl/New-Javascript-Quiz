@@ -5,7 +5,7 @@
 
 /* body */
 .container {
-    display: flexbox; 
+    /* display: flexbox;  */
     background-image: url("../images/background-img.jpeg");
     width: 100vw;
     height: 100vh;
@@ -13,11 +13,9 @@
     padding: 15px; 
     /* background-color: rgb(247, 233, 124); */
 }
-
-#score {
-    float: left;
-    /* width: 180px; */
-    height: 40px;
+.header-btn {
+    font-size: 1.5rem;
+    height: 2.5rem;
     border: 2px black solid; 
     padding: 9px;
     background-color: rgb(187, 37, 37);
@@ -25,24 +23,18 @@
     box-shadow: 5px;
     text-align: center;
     color: black;
-    font-size: 20px;
+}
+
+#score {
+    float: left;
+    /* width: 180px; */
     text-decoration-line: none;
 }
 
 #count-down {
     float: right;
     /* width: 40%; */
-    height: 40px;
-    font-size: 127%;
     margin-top: 1px;
-    line-height: 4.1vh;
-    border: 2px black solid; 
-    padding: 5px;
-    background-color: rgb(187, 37, 37);
-    border-radius: 5px;
-    box-shadow: 5px;
-    text-align: center;
-
 }
 /* quiz intro */
 .main-section {
@@ -52,7 +44,8 @@
     margin-top: 9%; 
     line-height: 50px;
     background-color: azure;   
-    position: relative;
+    /* position: relative; */
+    padding-bottom: 2%;
 }
 
 .intro-info {
@@ -200,7 +193,7 @@ li:hover {
 
 /* High Scores UI */
 #go-back {
-    position: relative;
+    /* position: relative; */
     margin: 15px;
     width: auto;
     text-align: center;
@@ -208,7 +201,7 @@ li:hover {
 }
 
 #clear {
-    position: relative;
+    /* position: relative; */
     margin: 15px;
     width: 100px;
     text-align: center;
