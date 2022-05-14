@@ -174,9 +174,11 @@ function allFinished() {
 
     createSubmitBtn.addEventListener("click", function() {
         var initials = createInputForm.value;
-
-        if (initials === null) {
-            initials.textContent = "You didn't enter your initials";
+        console.log(initials);
+        if (!initials) {
+            alert( "You didn't enter your intitials")
+            // initials.textContent = "You didn't enter your initials";
+            return;
             
         } else {
             var finalScore = {
@@ -193,6 +195,9 @@ function allFinished() {
                 scoreList = JSON.parse(scoreList);
             }
             scoreList.push(finalScore);
+            scoreList.sort(function (a, z) {
+                return z.score - a.score;
+            }   )
             var newScore = JSON.stringify(scoreList);
             localStorage.setItem("scoreList", newScore);
 
